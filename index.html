@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>По следите на старостта</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    text-align:center;
+    padding:40px;
+    background:#f4f4f4;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+.text-box{
+    background:#f8f8f8;
+    padding:20px;
+    border-radius:10px;
+    line-height:1.7;
+    margin-bottom:30px;
+}
+
+.coord{
+    font-size:28px;
+    margin:20px 0;
+}
+
+.coord input{
+    width:40px;
+    height:40px;
+    text-align:center;
+    font-size:22px;
+    margin:2px;
+    border:2px solid #ccc;
+    border-radius:6px;
+}
+
+.correct{
+    background:#4CAF50;
+    color:white;
+    border-color:#2E7D32;
+}
+
+.wrong{
+    background:#F44336;
+    color:white;
+    border-color:#B71C1C;
+}
+
+button{
+    padding:12px 24px;
+    font-size:18px;
+    cursor:pointer;
+    border:none;
+    border-radius:8px;
+}
+
+#result{
+    margin-top:20px;
+    font-size:22px;
+    font-weight:bold;
+}
+
+#next{
+    display:none;
+    margin-top:20px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>По следите на старостта</h1>
+
+<div class="text-box">
+<img src="./img/Screenshot 2026-06-05 001156.png"/>
+</div>
+
+<div class="coord">
+
+    <input maxlength="1" data-index="0">
+    <input maxlength="1" data-index="1">
+
+    .
+
+    <input maxlength="1" data-index="2">
+    <input maxlength="1" data-index="3">
+    <input maxlength="1" data-index="4">
+    <input maxlength="1" data-index="5">
+    <input maxlength="1" data-index="6">
+
+    ,
+
+    <input maxlength="1" data-index="7">
+    <input maxlength="1" data-index="8">
+
+    .
+
+    <input maxlength="1" data-index="9">
+    <input maxlength="1" data-index="10">
+    <input maxlength="1" data-index="11">
+    <input maxlength="1" data-index="12">
+    <input maxlength="1" data-index="13">
+
+</div>
+
+<button onclick="checkAnswer()">Провери</button>
+
+<div id="result"></div>
+
+<div id="next">
+    //<h2>🎉 Браво! Координатите са правилни!</h2>
+    //<button onclick="window.location.href='level2.html'">
+    //    Продължи напред
+    //</button>
+</div>
+
+</div>
+
+<script>
+
+// Примерен верен отговор:
+// 41.68520, 24.29032
+
+const answer = [
+'4','1',
+'6','8','5','2','0',
+'2','4',
+'2','9','0','3','2'
+];
+
+function checkAnswer(){
+
+    let allCorrect = true;
+
+    document.querySelectorAll("input").forEach(input => {
+
+        let index = input.dataset.index;
+
+        if(input.value === answer[index]){
+            input.classList.remove("wrong");
+            input.classList.add("correct");
+        }else{
+            input.classList.remove("correct");
+            input.classList.add("wrong");
+            allCorrect = false;
+        }
+
+    });
+
+    if(allCorrect){
+        document.getElementById("result").innerHTML =
+        "✅ Всички цифри са правилни! Отиди на посоченото място и като стигнеш помисли на колко години ставаш!";
+        document.getElementById("next").style.display = "block";
+    }else{
+        document.getElementById("result").innerHTML =
+        "❌ Има грешни цифри.";
+    }
+}
+</script>
+
+</body>
+</html>
