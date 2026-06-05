@@ -9,15 +9,16 @@
 body{
     font-family: Arial, sans-serif;
     text-align:center;
-    padding:40px;
+    padding:10px;
     background:#f4f4f4;
+    margin:0;
 }
 
 .container{
     max-width:900px;
     margin:auto;
     background:white;
-    padding:30px;
+    padding:20px;
     border-radius:15px;
     box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
@@ -30,19 +31,27 @@ body{
     margin-bottom:30px;
 }
 
+.text-box img{
+    max-width:100%;
+    height:auto;
+    border-radius:10px;
+}
+
 .coord{
-    font-size:28px;
+    font-size:22px;
     margin:20px 0;
+    word-wrap:break-word;
 }
 
 .coord input{
-    width:40px;
-    height:40px;
+    width:42px;
+    height:42px;
     text-align:center;
     font-size:22px;
     margin:2px;
     border:2px solid #ccc;
     border-radius:6px;
+    box-sizing:border-box;
 }
 
 .correct{
@@ -71,9 +80,35 @@ button{
     font-weight:bold;
 }
 
-#next{
-    display:none;
-    margin-top:20px;
+@media (max-width:600px){
+
+    .container{
+        padding:15px;
+    }
+
+    h1{
+        font-size:24px;
+    }
+
+    .coord{
+        font-size:18px;
+    }
+
+    .coord input{
+        width:34px;
+        height:34px;
+        font-size:18px;
+        margin:1px;
+    }
+
+    button{
+        width:100%;
+        font-size:16px;
+    }
+
+    #result{
+        font-size:18px;
+    }
 }
 </style>
 </head>
@@ -84,7 +119,7 @@ button{
 <h1>По следите на старостта</h1>
 
 <div class="text-box">
-<img src="./img/Screenshot 2026-06-05 001156.png"/>
+    <img src="./img/Screenshot 2026-06-05 001156.png" alt="Загадка">
 </div>
 
 <div class="coord">
@@ -119,18 +154,11 @@ button{
 
 <div id="result"></div>
 
-<div id="next">
-    //<h2>🎉 Браво! Координатите са правилни!</h2>
-    //<button onclick="window.location.href='level2.html'">
-    //    Продължи напред
-    //</button>
-</div>
-
 </div>
 
 <script>
 
-// Примерен верен отговор:
+// Верен отговор:
 // 41.68520, 24.29032
 
 const answer = [
@@ -162,7 +190,6 @@ function checkAnswer(){
     if(allCorrect){
         document.getElementById("result").innerHTML =
         "✅ Всички цифри са правилни! Отиди на посоченото място и като стигнеш помисли на колко години ставаш!";
-        document.getElementById("next").style.display = "block";
     }else{
         document.getElementById("result").innerHTML =
         "❌ Има грешни цифри.";
